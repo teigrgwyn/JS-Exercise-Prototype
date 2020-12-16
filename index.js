@@ -77,9 +77,11 @@ function Car(model, milesPerGallon) {
 Car.prototype.fill = function(gallons) {
   this.tank += gallons;
 }
-//Car.prototype.drive(distance) {
-//
-//}
+Car.prototype.drive = function(distance) {
+  this.odometer++;
+  if (this.tank > 0 && (this.odometer % this.milesPerGallon === 0)) this.tank--; // if odo & mpg have perfect division, then the total miles now equal an amount perfectly divisible by mpg and we should decrement the tank
+  else return `I ran out of fuel at ${odometer} miles!`;
+}
 
 /*
   TASK 3
