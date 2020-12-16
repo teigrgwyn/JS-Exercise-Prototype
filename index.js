@@ -98,15 +98,23 @@ Baby.prototype = Object.create(Person.prototype); // inherit Person methods
 Baby.prototype.play = function() { // add method:play to class:Baby
   return `Playing with ${this.favoriteToy}`
 }
-
+// how i believe the task above meant for us to do (but because the test passes values to Baby, we shouldn't pass the values through the ,call() function here):
+// function Baby(name, age, favoriteToy) {
+//   Baby.prototype.call(this, name, age, favoriteToy);
+//   this.favoriteToy = favoriteToy;
+// }
+// Baby.prototype = Object.create(Person.prototype);
+// Baby.prototype.play = function() {
+//   return `Playing with ${this.favoriteToy}`
+// }
 
 /* 
   TASK 4
   In your own words explain the four principles for the "this" keyword below:
-  1. 
-  2. 
-  3. 
-  4. 
+  1. global/window binding: should never use
+  2. implicit binding: useful
+  3. 'new' binding: for inheritance, and the vast majority of cases
+  4. explicit binding: for covering nuanced reasons
 */
   
   
