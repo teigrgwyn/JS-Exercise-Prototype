@@ -12,10 +12,10 @@ function Airplane(name) {
   this.name = name;
   this.isFlying = false;
 }
-Airplane.prototype.takeOff = function () {
+Airplane.prototype.takeOff = function() {
   this.isFlying = true;
 };
-Airplane.prototype.land = function () {
+Airplane.prototype.land = function() {
   this.isFlying = false;
 };
   
@@ -38,17 +38,22 @@ Airplane.prototype.land = function () {
     - Give instances of Person a method `.toString()`:
         + It should return a string with `name` and `age`. Example: "Mary, 50"
 */
-  
-function Person() {
-  
-}
- 
- 
 
-  
-  
-  
-  
+function Person(name, age) {
+  this.name = name;
+  this.age = age;
+  this.stomach = [];
+}
+Person.prototype.eat = function(food) {
+  if (this.stomach.length < 10) this.stomach.push(food);
+}
+Person.prototype.poop = function() {
+  this.stomach = [];
+}
+Person.prototype.toString = function() {
+  return `${this.name}, ${this.age}`
+}
+
 /*
   TASK 2
     - Write a Car constructor that initializes `model` and `milesPerGallon` from arguments.
@@ -62,12 +67,20 @@ function Person() {
     - STRETCH: A car which runs out of `fuel` while driving can't drive any more distance:
         + The `drive` method should return a string "I ran out of fuel at x miles!" x being `odometer`.
 */
-  
-function Car() {
-  
+
+function Car(model, milesPerGallon) {
+  this.model = model;
+  this.milesPerGallon = milesPerGallon;
+  this.tank = 0;
+  this.odometer = 0;
 }
-  
-  
+Car.prototype.fill = function(gallons) {
+  this.tank += gallons;
+}
+//Car.prototype.drive(distance) {
+//
+//}
+
 /*
   TASK 3
     - Write a Baby constructor subclassing Person.
@@ -75,8 +88,15 @@ function Car() {
     - Besides the methods on Person.prototype, babies have the ability to `.play()`:
         + Should return a string "Playing with x", x being the favorite toy.
 */
-function Baby() {
-  
+function Baby(name, age, favoriteToy) {
+  this.name = name;
+  this.age = age;
+  this.favoriteToy = favoriteToy;
+}
+//Baby.prototype.call(this, name, age, favoriteToy); // not needed on this demo, because the project explicitly passes args to Baby
+Baby.prototype = Object.create(Person.prototype); // inherit Person methods
+Baby.prototype.play = function() { // add method:play to class:Baby
+  return `Playing with ${this.favoriteToy}`
 }
 
 
