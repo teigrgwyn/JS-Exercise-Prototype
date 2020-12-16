@@ -79,8 +79,8 @@ Car.prototype.fill = function(gallons) {
 }
 Car.prototype.drive = function(distance) {
   this.odometer++;
-  if (this.tank > 0 && (this.odometer % this.milesPerGallon === 0)) this.tank--; // if odo & mpg have perfect division, then the total miles now equal an amount perfectly divisible by mpg and we should decrement the tank
-  else return `I ran out of fuel at ${odometer} miles!`;
+  if (this.tank > 0 && (distance % this.milesPerGallon === 0)) this.tank--; // if odo & mpg have perfect division, then the total miles now equal an amount perfectly divisible by mpg and we should decrement the tank
+  else return `I ran out of fuel at ${this.odometer} miles!`;
 }
 
 /*
@@ -90,25 +90,15 @@ Car.prototype.drive = function(distance) {
     - Besides the methods on Person.prototype, babies have the ability to `.play()`:
         + Should return a string "Playing with x", x being the favorite toy.
 */
+Baby.prototype = Object.create(Person.prototype); // inherit Person methods
 function Baby(name, age, favoriteToy) {
-  this.name = name;
-  this.age = age;
+  Person.call(this, name, age)
   this.favoriteToy = favoriteToy;
 }
-//Baby.prototype.call(this, name, age, favoriteToy); // not needed on this demo, because the project explicitly passes args to Baby
-Baby.prototype = Object.create(Person.prototype); // inherit Person methods
+
 Baby.prototype.play = function() { // add method:play to class:Baby
   return `Playing with ${this.favoriteToy}`
 }
-// how i believe the task above meant for us to do (but because the test passes values to Baby, we shouldn't pass the values through the ,call() function here):
-// function Baby(name, age, favoriteToy) {
-//   Baby.prototype.call(this, name, age, favoriteToy);
-//   this.favoriteToy = favoriteToy;
-// }
-// Baby.prototype = Object.create(Person.prototype);
-// Baby.prototype.play = function() {
-//   return `Playing with ${this.favoriteToy}`
-// }
 
 /* 
   TASK 4
